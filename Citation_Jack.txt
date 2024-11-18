@@ -1,0 +1,5 @@
+Mouse Position: 
+https://docs.unity3d.com/ScriptReference/Input-mousePosition.html
+
+Converting Mouse Position to world position:
+https://discussions.unity.com/t/converting-mouse-position-to-world-stationary-camera/82297
