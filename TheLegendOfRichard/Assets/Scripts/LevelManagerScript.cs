@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 //This Script is responsible for spawning enemies and keeping track of when they die. 
@@ -18,6 +20,12 @@ public class LevelManagerScript : MonoBehaviour
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject levelMainMenu;
+
+    [Header("HUD")]
+    [SerializeField] GameObject hud;
+    [SerializeField] Sprite heartEmpty; 
+    [SerializeField] Sprite heartFull;  //replace with your own heart sprite
+    [SerializeField] Image[] heartImages;
 
     
     GameObject player;
@@ -86,14 +94,27 @@ public class LevelManagerScript : MonoBehaviour
                 nextLevelScreen.SetActive(true); 
             }
             //after delay open next level 
-        }
+        } 
+        Destroy(enemy);
 
     }
 
-    public void PlayerDied()
+    public void playerDamage(int health)
     {
-        //Player died, lose State
-        Debug.Log("Player died!");
+        //get heart images from array and replace with heartEmpty image if health is less then index - 1
+        for (int i = 0; i < heartImages.Length; i++)
+        {
+            if (i <= health - 1)
+            {
+                heartImages[i].sprite = heartFull;
+            }
+            else
+            {
+                heartImages[i].sprite = heartEmpty;
+            }
+        }
+        
+        if (health <=0){
         foreach (GameObject enemy in currentEnemies)
         {
             //stop all enemies
@@ -103,7 +124,9 @@ public class LevelManagerScript : MonoBehaviour
         StopCoroutine(SpawnEnemies());
         //show lose screen
         loseScreen.SetActive(true);
+        }
     }
+
 
     IEnumerator SpawnEnemies()
     {

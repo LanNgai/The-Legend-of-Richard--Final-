@@ -23,22 +23,14 @@ public class HealthAndDamageScript : MonoBehaviour
             Vector3 knockbackDirection = (transform.position - damageDealer.transform.position).normalized;
             Rigidbody playerRb = gameObject.GetComponent<Rigidbody>();
             playerRb.AddForce(knockbackDirection * 20);
+            levelManager.playerDamage(health);
         }
-        else if (gameObject.tag == "Enemy"){
+        else {
             Debug.Log("Enemy damage received" + " Enemy Health: " + health);
-        }
-        if(health <= 0){
-
-            if(gameObject.tag == "Enemy" || gameObject.tag == "EnemyTrash"){
+            if(health <= 0){
                 //if is enemy, call LevelManager enemy died method 
                 levelManager.EnemyDied(this.gameObject);
             }
-            else if(gameObject.tag == "Player"){
-                // if is player, call LevelManager player died method
-                levelManager.PlayerDied();
-            }
-            // destroy the game object
-            Destroy(gameObject);
         }
     }
     
