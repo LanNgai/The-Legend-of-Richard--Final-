@@ -19,7 +19,7 @@ public class EnemyScript : MonoBehaviour
     {
         enemyRb = GetComponent<Rigidbody>();
         if(hurtbox)hurtbox.enabled = false;
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -40,9 +40,9 @@ public class EnemyScript : MonoBehaviour
 
         }else if (Vector3.Distance(player.transform.position, transform.position) <= attackRange && !hasattacked)
         {
+            if(hurtbox)hurtbox.enabled = true;
             transform.rotation = lookRotation;
             enemyRb.AddForce(lookDirection * boost, ForceMode.Impulse);
-            if(hurtbox)hurtbox.enabled = true;
             hasattacked = true;
             StartCoroutine(DelayAttack()); 
         }
@@ -53,6 +53,7 @@ public class EnemyScript : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             if(hurtbox)hurtbox.enabled = false;
+            Debug.Log(hurtbox + " " + hurtbox.enabled + " " + other);
             //stop movement
             enemyRb.velocity = Vector3.zero;
             //deal damage to player
@@ -65,8 +66,7 @@ public class EnemyScript : MonoBehaviour
     //coroutine for attack cooldown
     IEnumerator DelayAttack()
     {
-        yield return new WaitForSeconds(3.0f);
-        
+        yield return new WaitForSeconds(3.0f);      
         if (hurtbox && hurtbox.enabled){
             hurtbox.enabled = false;  //turn off hurtbox when attack is done //this will prevent the hurtbox from staying active while the enemy is not attacking.
         }

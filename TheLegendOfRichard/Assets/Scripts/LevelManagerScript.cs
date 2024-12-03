@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -57,6 +56,7 @@ public class LevelManagerScript : MonoBehaviour
 
     public void StartGame(){
         levelMainMenu.SetActive(false); 
+        hud.SetActive(true);
         player.GetComponent<PlayerMovement>().gameActive = true;
         StartCoroutine(SpawnEnemies());
     }
@@ -83,7 +83,6 @@ public class LevelManagerScript : MonoBehaviour
         //check if all enemies are dead
         if (currentEnemies.Count == 0 && allEnemiesSpawned)
         {
-
             //all enemies are dead, Win State
             Debug.Log("All enemies are dead!");
             player.GetComponent<PlayerMovement>().gameActive = false;
@@ -122,7 +121,8 @@ public class LevelManagerScript : MonoBehaviour
         }
         //stop spawning enemies
         StopCoroutine(SpawnEnemies());
-        //show lose screen
+        //remove hud & show lose screen
+        hud.SetActive(false);
         loseScreen.SetActive(true);
         }
     }
@@ -142,7 +142,6 @@ public class LevelManagerScript : MonoBehaviour
             //create an enemy at the chosen spawn point and add to list of current enemies
             GameObject enemy = Instantiate(enemies[i], spawnPoint, Quaternion.identity);
             currentEnemies.Add(enemy);
-            Debug.Log(currentEnemies.Count);
             if((i + 1) == totalNumberOfEnemies){
                 break;
             }
