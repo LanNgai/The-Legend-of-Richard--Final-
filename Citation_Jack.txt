@@ -3,3 +3,6 @@ https://docs.unity3d.com/ScriptReference/Input-mousePosition.html
 
 Converting Mouse Position to world position:
 https://discussions.unity.com/t/converting-mouse-position-to-world-stationary-camera/82297
+
+Heart Icons (cropped into 2 seperate hearts, one red, one not): 
+https://opengameart.org/content/25x25-hearts
