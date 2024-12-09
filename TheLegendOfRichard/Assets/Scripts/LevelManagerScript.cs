@@ -15,6 +15,10 @@ public class LevelManagerScript : MonoBehaviour
     [SerializeField] List<GameObject> enemies;
     [SerializeField] Vector3[] spawnPoints;
 
+    [Header("Pickup Settings")]
+    [SerializeField] GameObject healthPickup;
+    [SerializeField] GameObject powerPickup;
+
     [Header("Menu Scenes")]
     [SerializeField] GameObject nextLevelScreen;
     [SerializeField] GameObject loseScreen;
@@ -63,6 +67,8 @@ public class LevelManagerScript : MonoBehaviour
         hud.SetActive(true);
         player.GetComponent<PlayerMovement>().gameActive = true;
         StartCoroutine(SpawnEnemies());
+        //start spawning pickups
+        StartCoroutine(SpawnPickups());
     }
 
     public void RestartLevel(){
@@ -96,7 +102,6 @@ public class LevelManagerScript : MonoBehaviour
             else{
                 nextLevelScreen.SetActive(true); 
             }
-            //after delay open next level 
         } 
         Destroy(enemy);
 
@@ -166,5 +171,32 @@ public class LevelManagerScript : MonoBehaviour
         allEnemiesSpawned = true;
         //all enemies have been spawned, finish Coroutine
         StopCoroutine(SpawnEnemies());
+    }
+
+    IEnumerator SpawnPickups()
+    {
+        while(true){
+            //choose a random spawn point within a 20 Unit radius around the center of the map 
+            Vector3 center = new Vector3(0, 0, 0);
+            Vector3 randomPosition = Random.insideUnitSphere * 20;
+            Vector3 spawnPoint = new Vector3(center.x + randomPosition.x, 0.5f, center.z + randomPosition.z);
+            
+            //create a pickup at the chosen spawn point
+            int randomPickup = Random.Range(0, 3);
+            switch(randomPickup){
+                case 0:
+                    if(player.GetComponent<HealthAndDamageScript>().health < 3){
+                    Instantiate(healthPickup, spawnPoint, healthPickup.transform.rotation);
+                    }
+                    break;
+                case 1:
+                    Instantiate(powerPickup, spawnPoint, powerPickup.transform.rotation);
+                    break;
+                default:
+                    break;
+            }
+            //wait for between 1 and 2 seconds
+            yield return new WaitForSeconds(Random.Range(6f, 10f));
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 //in the event of receiving damage, reducing the health or, in the event of healing, increasing the health
 public class HealthAndDamageScript : MonoBehaviour
 {
-    [SerializeField] int health; // Health of the GameObject
+    public int health; // Health of the GameObject
     LevelManagerScript levelManager; //reference to levelmanager, will be called when gameobject is "dead"
 
     void Start()
