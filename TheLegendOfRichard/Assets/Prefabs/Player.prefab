@@ -123,6 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1496629727672491369, guid: 01d466c1f6353a34fb7649598f4528ff, type: 3}
   speed: 10
+  powerupIndicator: {fileID: 0}
+  powered: 0
   gameActive: 0
 --- !u!114 &-1597553085905255073
 MonoBehaviour:
@@ -145,7 +147,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4690620593380941564}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 6
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

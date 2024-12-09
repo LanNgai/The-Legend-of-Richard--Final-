@@ -18,6 +18,7 @@ public class HealthAndDamageScript : MonoBehaviour
     public void Damage(int damageReceived, GameObject damageDealer){
         health -= damageReceived;
         if(gameObject.tag == "Player"){
+
             Debug.Log("Player damage received" + " Player Health: " + health);
             //if player is hit by enemy deal knockback in opposite direction from enemy position
             Vector3 knockbackDirection = (transform.position - damageDealer.transform.position).normalized;
@@ -29,7 +30,35 @@ public class HealthAndDamageScript : MonoBehaviour
             Debug.Log("Enemy damage received" + " Enemy Health: " + health);
             if(health <= 0){
                 //if is enemy, call LevelManager enemy died method 
-                levelManager.EnemyDied(this.gameObject);
+                levelManager.EnemyDied(gameObject);
+            }
+        }
+    }
+
+    public void Heal() {
+        health++;
+        levelManager.playerHealed(health);
+    }
+
+    //
+    private void OnTriggerEnter(Collider other) {
+        if(gameObject.CompareTag("Player")){
+            
+            if(other.gameObject.CompareTag("HealthPickup")){
+                HealthAndDamageScript hdScript = gameObject.GetComponent<HealthAndDamageScript>();
+                if(hdScript.health < 3){
+                    hdScript.Heal();
+                    Destroy(other.gameObject); // destroy health pickup when picked up
+                }
+            }
+            else if(other.gameObject.CompareTag("PowerPickup")){
+                // give player temporary powerup
+                PlayerMovement playerScript = gameObject.GetComponent<PlayerMovement>();
+                if (!playerScript.powered){
+                    Debug.Log("Powerup received");
+                    playerScript.Powerup();
+                    Destroy(other.gameObject); // destroy powerup when picked up
+                }
             }
         }
     }

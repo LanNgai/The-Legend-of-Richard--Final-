@@ -71,6 +71,7 @@ MonoBehaviour:
   winScreen: {fileID: 2034972255840031383}
   levelMainMenu: {fileID: 5986703304186588526}
   hud: {fileID: 6192367906410038491, guid: 9e47fdda379827f479cb5df4d7cee707, type: 3}
+  levelText: {fileID: 7245793628876028968}
   heartEmpty: {fileID: 21300000, guid: 634246b2d100ebd49b05787df8d764f3, type: 3}
   heartFull: {fileID: 21300000, guid: 0b9c3159b3ff8314b9d1390d9e469740, type: 3}
   heartImages:

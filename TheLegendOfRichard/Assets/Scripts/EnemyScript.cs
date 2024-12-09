@@ -32,25 +32,41 @@ public class EnemyScript : MonoBehaviour
         //find rotation for enemy to look at player
         Quaternion lookRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
         
-        if (Vector3.Distance(player.transform.position, transform.position) > attackRange)
-        {
-            //set rotation of enemy toward player
-            transform.rotation = lookRotation;  
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        if(!gameObject.CompareTag("EnemyTrash")) {
+            if (Vector3.Distance(player.transform.position, transform.position) > attackRange)
+            {
+                //set rotation of enemy toward player
+                transform.rotation = lookRotation;  
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        }else if (Vector3.Distance(player.transform.position, transform.position) <= attackRange && !hasattacked)
-        {
-            if(hurtbox)hurtbox.enabled = true;
-            transform.rotation = lookRotation;
-            enemyRb.AddForce(lookDirection * boost, ForceMode.Impulse);
-            hasattacked = true;
-            StartCoroutine(DelayAttack()); 
+            }else if (Vector3.Distance(player.transform.position, transform.position) <= attackRange && !hasattacked)
+            {
+                if(hurtbox)hurtbox.enabled = true;
+                transform.rotation = lookRotation;
+                enemyRb.AddForce(lookDirection * boost, ForceMode.Impulse);
+                hasattacked = true;
+                StartCoroutine(DelayAttack()); 
+            }
         }
+    }
+
+    void FixedUpdate() {
+        if(gameObject.CompareTag("EnemyTrash")){
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+
+            // Apply force towards player
+            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+            rb.AddForce(directionToPlayer * 10f);
+
+            // Apply random torque for tumbling
+            Vector3 randomTorque = new Vector3(Random.value, Random.value, Random.value) * 10f;
+            rb.AddTorque(randomTorque);  
+        }  
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.name == "Player" && !gameObject.CompareTag("EnemyTrash"))
         {
             if(hurtbox)hurtbox.enabled = false;
             Debug.Log(hurtbox + " " + hurtbox.enabled + " " + other);
@@ -61,6 +77,16 @@ public class EnemyScript : MonoBehaviour
             if(handdscript != null) handdscript.Damage(1, this.gameObject);
             
         }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+            if (other.gameObject.name == "Player" && gameObject.CompareTag("EnemyTrash") && !hasattacked)
+            {
+                enemyRb.velocity = Vector3.zero;
+                HealthAndDamageScript handdscript = other.gameObject.GetComponent<HealthAndDamageScript>();
+                if(handdscript != null) handdscript.Damage(1, this.gameObject);
+                StartCoroutine(DelayAttack()); 
+            }
     }
     
     //coroutine for attack cooldown

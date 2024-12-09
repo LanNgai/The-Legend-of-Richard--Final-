@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,8 +23,9 @@ public class LevelManagerScript : MonoBehaviour
 
     [Header("HUD")]
     [SerializeField] GameObject hud;
+    [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Sprite heartEmpty; 
-    [SerializeField] Sprite heartFull;  //replace with your own heart sprite
+    [SerializeField] Sprite heartFull;
     [SerializeField] Image[] heartImages;
 
     
@@ -56,6 +58,8 @@ public class LevelManagerScript : MonoBehaviour
 
     public void StartGame(){
         levelMainMenu.SetActive(false); 
+        //set level text to current level
+        levelText.text = "Level: " + (SceneManager.GetActiveScene().buildIndex + 1);
         hud.SetActive(true);
         player.GetComponent<PlayerMovement>().gameActive = true;
         StartCoroutine(SpawnEnemies());
@@ -124,6 +128,17 @@ public class LevelManagerScript : MonoBehaviour
         //remove hud & show lose screen
         hud.SetActive(false);
         loseScreen.SetActive(true);
+        }
+    }
+
+    public void playerHealed(int health){
+        //get heart images from array and replace with heartFull image if health is more then or equal to index - 1
+        for (int i = 0; i < heartImages.Length; i++)
+        {
+            if (i <= health - 1)
+            {
+                heartImages[i].sprite = heartFull;
+            }
         }
     }
 

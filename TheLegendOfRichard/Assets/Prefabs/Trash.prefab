@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4348050645230661974}
   - component: {fileID: 392438462530054296}
   - component: {fileID: 6059026665867906163}
-  - component: {fileID: 1373047671773411396}
   - component: {fileID: 6066350732726063544}
   - component: {fileID: 6221858578315374366}
   - component: {fileID: 5282295144046022062}
@@ -109,27 +108,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &1373047671773411396
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8111969292562095049}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6066350732726063544
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -170,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  hurtbox: {fileID: 1373047671773411396}
+  hurtbox: {fileID: 0}
 --- !u!114 &5282295144046022062
 MonoBehaviour:
   m_ObjectHideFlags: 0

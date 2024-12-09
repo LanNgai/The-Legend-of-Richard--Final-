@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -7,9 +6,13 @@ public class PlayerMovement : MonoBehaviour
     public GameObject projectilePrefab;
     private float fireRate = 0.5f;
     private float nextFire = 0;
-    private float horizontalInput;
-    private float verticalInput;
+    float horizontalInput;
+    float verticalInput;
     public float speed;
+
+    public GameObject powerupIndicator; 
+
+    public bool powered = false;
 
     Camera cam; 
     Ray ray;
@@ -35,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.identity; //zeroing rotation before movement so that we dont move toward the mouse position
             transform.Translate(Vector3.forward * verticalInput * speed * Time.deltaTime);
             transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
+            Debug.Log("Velocity:" + gameObject.GetComponent<Rigidbody>().velocity); 
         
             if(cam){
                 ray = cam.ScreenPointToRay(Input.mousePosition); //creating a ray from where the mouse is on the screen into the game world
@@ -43,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
                     if (Physics.Raycast(ray, out hit)){
 
                         Hitpoint = hit.point; //getting the point of intersection of the raycast and what it hits 
-                        transform.LookAt(new Vector3(Hitpoint.x, transform.position.y, Hitpoint.z)); //rotate the player to face in the direction of the hitpoint, keeping its y rotate so it doesnt aim down or up.
+                        transform.LookAt(new Vector3(Hitpoint.x, transform.position.y, Hitpoint.z)); //rotate the player to face in the direction of the hitpoint, keeping its y rotate so it doesnt aim up or down.
                     }
             }
         
@@ -55,5 +59,26 @@ public class PlayerMovement : MonoBehaviour
                 Instantiate(projectilePrefab, projectileSpawnPosition, transform.rotation);
             }
         }
+    }
+
+    public void Powerup(){
+        StartCoroutine(PowerupCoroutine());  //start the powerup coroutine
+    }
+
+    //powerup coroutine 
+    IEnumerator PowerupCoroutine(){
+        powered = true;
+        fireRate = 0.1f;
+        //activate powerup indicator 
+        powerupIndicator.gameObject.SetActive(true);
+        Debug.Log("Powerup Activated"); 
+        //delay 12 seconds 
+        yield return new WaitForSeconds(12f);
+        // reset fire rate to original
+        powered = false;
+        fireRate = 0.5f;
+        //deactivate powerup indicator
+        powerupIndicator.gameObject.SetActive(false);
+        Debug.Log("Powerup Expired");  //log to console that powerup expired
     }
 }
