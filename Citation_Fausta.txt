@@ -1,1 +1,2 @@
-
+Importing a blender object into unity:
+https://all3dp.com/2/blender-to-unity-how-to-import-blender-models-in-unity/#:~:text=The%20process%20to%20import%20the,That%27s%20it!
