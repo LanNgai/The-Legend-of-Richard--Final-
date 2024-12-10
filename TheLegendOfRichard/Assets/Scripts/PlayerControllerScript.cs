@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
                 nextFire = Time.time + fireRate;// reset nextFire to current time + fireRate
                 Vector3 projectileSpawnPosition = transform.position + (transform.forward * 5);
                 Instantiate(projectilePrefab, projectileSpawnPosition, transform.rotation);
-                playerAudio.PlayOneShot(shootingSound, 5.0f);
+                playerAudio.PlayOneShot(shootingSound, 0.6f);
             }
         }
     }
