@@ -39,8 +39,7 @@ public class LevelManagerScript : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         allEnemiesSpawned = false;
         if(player == null){
                 //get reference to player
@@ -49,6 +48,7 @@ public class LevelManagerScript : MonoBehaviour
         nextLevelScreen.SetActive(false);
         loseScreen.SetActive(false);
         winScreen.SetActive(false);
+        hud.SetActive(false); 
         if(SceneManager.GetActiveScene().buildIndex != 0){
             //if not in first scene, hide mainmenu and start spawning enemies immediately 
             StartGame();
@@ -84,8 +84,7 @@ public class LevelManagerScript : MonoBehaviour
     }
 
 
-    public void EnemyDied(GameObject enemy)
-    {
+    public void EnemyDied(GameObject enemy){
         //remove enemy from list of current enemies
         currentEnemies.Remove(enemy);
         Debug.Log(currentEnemies.Count);
@@ -96,6 +95,7 @@ public class LevelManagerScript : MonoBehaviour
             //all enemies are dead, Win State
             Debug.Log("All enemies are dead!");
             player.GetComponent<PlayerMovement>().gameActive = false;
+            StopCoroutine(SpawnPickups()); 
             if(SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCountInBuildSettings){
                 winScreen.SetActive(true);
             }
@@ -107,9 +107,8 @@ public class LevelManagerScript : MonoBehaviour
 
     }
 
-    public void playerDamage(int health)
-    {
-        //get heart images from array and replace with heartEmpty image if health is less then index - 1
+    public void playerDamage(int health){
+        //get heart images from array and replace with heartEmpty if index is less than health - 1
         for (int i = 0; i < heartImages.Length; i++)
         {
             if (i <= health - 1)
@@ -120,16 +119,17 @@ public class LevelManagerScript : MonoBehaviour
             {
                 heartImages[i].sprite = heartEmpty;
             }
-        }
-        
+        }      
         if (health <=0){
         foreach (GameObject enemy in currentEnemies)
         {
             //stop all enemies
             enemy.GetComponent<EnemyScript>().enabled = false;   
         }
+        player.GetComponent<PlayerMovement>().gameActive = false;
         //stop spawning enemies
         StopCoroutine(SpawnEnemies());
+        StopCoroutine(SpawnPickups()); 
         //remove hud & show lose screen
         hud.SetActive(false);
         loseScreen.SetActive(true);
@@ -137,19 +137,18 @@ public class LevelManagerScript : MonoBehaviour
     }
 
     public void playerHealed(int health){
-        //get heart images from array and replace with heartFull image if health is more then or equal to index - 1
+        //get heart images from array and replace with heartFull image if index is greater than health - 1
         for (int i = 0; i < heartImages.Length; i++)
         {
             if (i <= health - 1)
             {
                 heartImages[i].sprite = heartFull;
             }
+
         }
     }
 
-
-    IEnumerator SpawnEnemies()
-    {
+    IEnumerator SpawnEnemies(){
         //wait for 3 seconds before spawning enemies
         yield return new WaitForSeconds(3f);
         int totalNumberOfEnemies = enemies.Count;
@@ -173,8 +172,7 @@ public class LevelManagerScript : MonoBehaviour
         StopCoroutine(SpawnEnemies());
     }
 
-    IEnumerator SpawnPickups()
-    {
+    IEnumerator SpawnPickups(){
         while(true){
             //choose a random spawn point within a 20 Unit radius around the center of the map 
             Vector3 center = new Vector3(0, 0, 0);
