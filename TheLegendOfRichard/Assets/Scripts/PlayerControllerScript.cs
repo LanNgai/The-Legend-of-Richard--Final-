@@ -10,7 +10,10 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
     public float speed;
 
-    public GameObject powerupIndicator; 
+    public GameObject powerupIndicator;
+    public AudioClip boostSound;
+    public AudioClip shootingSound;
+    private AudioSource playerAudio;
 
     public bool powered = false;
 
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -57,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
                 nextFire = Time.time + fireRate;// reset nextFire to current time + fireRate
                 Vector3 projectileSpawnPosition = transform.position + (transform.forward * 3);
                 Instantiate(projectilePrefab, projectileSpawnPosition, transform.rotation);
+                playerAudio.PlayOneShot(shootingSound, 5.0f);
             }
         }
     }
@@ -71,7 +76,8 @@ public class PlayerMovement : MonoBehaviour
         fireRate = 0.1f;
         //activate powerup indicator 
         powerupIndicator.gameObject.SetActive(true);
-        Debug.Log("Powerup Activated"); 
+        Debug.Log("Powerup Activated");
+
         //delay 12 seconds 
         yield return new WaitForSeconds(12f);
         // reset fire rate to original

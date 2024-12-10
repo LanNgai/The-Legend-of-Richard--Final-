@@ -124,6 +124,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1496629727672491369, guid: 01d466c1f6353a34fb7649598f4528ff, type: 3}
   speed: 10
   powerupIndicator: {fileID: 0}
+  boostSound: {fileID: 8300000, guid: ba9279267a423234bace7bca8da44087, type: 3}
+  shootingSound: {fileID: 8300000, guid: dc6fdf0f3ea482c4cbac8655596d6a21, type: 3}
   powered: 0
   gameActive: 0
 --- !u!114 &-1597553085905255073

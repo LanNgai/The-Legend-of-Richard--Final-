@@ -7,11 +7,15 @@ public class HealthAndDamageScript : MonoBehaviour
 {
     public int health; // Health of the GameObject
     LevelManagerScript levelManager; //reference to levelmanager, will be called when gameobject is "dead"
+    
+    private AudioSource playerAudio;
+    public AudioClip boostSound;
 
     void Start()
     {
         // get reference to level manager
         levelManager = FindObjectOfType<LevelManagerScript>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // method to receive damage, will be called when enemy is shot by player or player is damaged by enemy
@@ -54,6 +58,7 @@ public class HealthAndDamageScript : MonoBehaviour
             else if(other.gameObject.CompareTag("PowerPickup")){
                 // give player temporary powerup
                 PlayerMovement playerScript = gameObject.GetComponent<PlayerMovement>();
+                playerAudio.PlayOneShot(boostSound);
                 if (!playerScript.powered){
                     Debug.Log("Powerup received");
                     playerScript.Powerup();
