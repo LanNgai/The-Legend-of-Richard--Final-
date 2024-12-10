@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate;// reset nextFire to current time + fireRate
-                Vector3 projectileSpawnPosition = transform.position + (transform.forward * 3);
+                Vector3 projectileSpawnPosition = transform.position + (transform.forward * 5);
                 Instantiate(projectilePrefab, projectileSpawnPosition, transform.rotation);
                 playerAudio.PlayOneShot(shootingSound, 5.0f);
             }
