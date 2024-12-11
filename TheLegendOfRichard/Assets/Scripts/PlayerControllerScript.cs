@@ -24,11 +24,14 @@ public class PlayerMovement : MonoBehaviour
 
     public bool gameActive = false;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         playerAudio = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -64,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
                 playerAudio.PlayOneShot(shootingSound, 0.6f);
             }
         }
+        animator.SetFloat("Horizontal", horizontalInput);
+        animator.SetFloat("Vertical", verticalInput);
     }
 
     public void Powerup(){
