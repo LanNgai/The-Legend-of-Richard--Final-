@@ -1,2 +1,13 @@
 Importing a blender object into unity:
 https://all3dp.com/2/blender-to-unity-how-to-import-blender-models-in-unity/#:~:text=The%20process%20to%20import%20the,That%27s%20it!
+
+Cat asset:
+https://free3d.com/3d-model/lowpoly-cat-rigged-run-animation-756268.html
+
+Importing painted cat:
+https://www.youtube.com/watch?v=xurHA63dl74
+
+Animations in Unity:
+https://www.youtube.com/watch?v=sEGliTUcyVA
+https://www.youtube.com/watch?v=5mlwvbu1fxQ
+https://www.youtube.com/watch?v=rfy9S2kIRm8
