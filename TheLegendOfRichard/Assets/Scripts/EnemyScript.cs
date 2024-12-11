@@ -51,6 +51,8 @@ public class EnemyScript : MonoBehaviour
     }
 
     void FixedUpdate() {
+        if (player == null) return; 
+
         if(gameObject.CompareTag("EnemyTrash")){
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
 

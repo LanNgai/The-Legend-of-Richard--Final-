@@ -66,9 +66,9 @@ public class PlayerMovement : MonoBehaviour
                 Instantiate(projectilePrefab, projectileSpawnPosition, transform.rotation);
                 playerAudio.PlayOneShot(shootingSound, 0.6f);
             }
-        }
         animator.SetFloat("Horizontal", horizontalInput);
         animator.SetFloat("Vertical", verticalInput);
+        }
     }
 
     public void Powerup(){
