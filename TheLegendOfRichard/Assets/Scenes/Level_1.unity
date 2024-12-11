@@ -781,7 +781,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2503777785862757027, guid: 4ea99e727f7d53b4a84ae3dca55dcc08, type: 3}
+      propertyPath: m_Name
+      value: GithubButton
+      objectReference: {fileID: 0}
     - target: {fileID: 3239110789381110150, guid: 4ea99e727f7d53b4a84ae3dca55dcc08, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986703304186588526, guid: 4ea99e727f7d53b4a84ae3dca55dcc08, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

@@ -88,6 +88,10 @@ public class LevelManagerScript : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void OpenGithub() {
+        Application.OpenURL("https://github.com/LanNgai/The-Legend-of-Richard--Final-");
+    }
+
 
     public void EnemyDied(GameObject enemy){
         //remove enemy from list of current enemies
