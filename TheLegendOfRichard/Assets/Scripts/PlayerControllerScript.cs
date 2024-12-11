@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.identity; //zeroing rotation before movement so that we dont move toward the mouse position
             transform.Translate(Vector3.forward * verticalInput * speed * Time.deltaTime);
             transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
-            Debug.Log("Velocity:" + gameObject.GetComponent<Rigidbody>().velocity); 
         
             if(cam){
                 ray = cam.ScreenPointToRay(Input.mousePosition); //creating a ray from where the mouse is on the screen into the game world

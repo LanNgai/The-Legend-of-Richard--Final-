@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8283386
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -55,6 +71,22 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 5b7e601df382c834898ef0fe27df45c3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -117,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b04d4b80e77fa14288a062518c76c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1496629727672491369, guid: 01d466c1f6353a34fb7649598f4528ff, type: 3}
+  projectilePrefab: {fileID: 6735912495619048326, guid: f8be2e1c117b25d4c8a8c15625a3917a, type: 3}
   speed: 13
   powerupIndicator: {fileID: 0}
   boostSound: {fileID: 8300000, guid: ba9279267a423234bace7bca8da44087, type: 3}
@@ -164,7 +196,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!82 &5528375610655407813
 AudioSource:
   m_ObjectHideFlags: 0
