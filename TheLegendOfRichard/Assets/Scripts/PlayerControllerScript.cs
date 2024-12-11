@@ -8,6 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private float nextFire = 0;
     float horizontalInput;
     float verticalInput;
+
+    //boundry values
+    public Vector2 xBoundry = new Vector2();
+    public Vector2 yBoundry = new Vector2();
+
     public float speed;
 
     public GameObject powerupIndicator;
@@ -45,7 +50,10 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.identity; //zeroing rotation before movement so that we dont move toward the mouse position
             transform.Translate(Vector3.forward * verticalInput * speed * Time.deltaTime);
             transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
-        
+
+            //if player ends up outside boundry limit clamp the player transform within the boundry limit 
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, xBoundry.x, xBoundry.y), transform.position.y, Mathf.Clamp(transform.position.z, yBoundry.x, yBoundry.y));
+
             if(cam){
                 ray = cam.ScreenPointToRay(Input.mousePosition); //creating a ray from where the mouse is on the screen into the game world
 

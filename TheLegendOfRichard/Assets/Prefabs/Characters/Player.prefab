@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6735912495619048326, guid: f8be2e1c117b25d4c8a8c15625a3917a, type: 3}
+  xBoundry: {x: -20, y: 20}
+  yBoundry: {x: -10, y: 30}
   speed: 13
   powerupIndicator: {fileID: 0}
   boostSound: {fileID: 8300000, guid: ba9279267a423234bace7bca8da44087, type: 3}

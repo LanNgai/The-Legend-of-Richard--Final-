@@ -67,8 +67,8 @@ MonoBehaviour:
   - {x: -45, y: 4, z: -50}
   - {x: 45, y: 4, z: -50}
   - {x: 45, y: 4, z: 50}
-  healthPickup: {fileID: 5702245602872174104, guid: 3811834eec888924f91096778fb01946, type: 3}
-  powerPickup: {fileID: 8693830581385336326, guid: 96dfba788cc5f424f8e535d62199f2d5, type: 3}
+  healthPickup: {fileID: 8550257263588338532, guid: 7a783bba9360516429662df13a1da14c, type: 3}
+  powerPickup: {fileID: 2920677533291455420, guid: a33aa9e3e67ea7e4ea939cadf84ebdd0, type: 3}
   nextLevelScreen: {fileID: 4515336475708615005}
   loseScreen: {fileID: 2967930998358325991}
   winScreen: {fileID: 2034972255840031383}
