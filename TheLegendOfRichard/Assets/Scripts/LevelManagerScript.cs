@@ -32,6 +32,10 @@ public class LevelManagerScript : MonoBehaviour
     [SerializeField] Sprite heartFull;
     [SerializeField] Image[] heartImages;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip playerDeathSound;
+    AudioSource audioSource;
+
     
     GameObject player;
     List<GameObject> currentEnemies = new List<GameObject>{};
@@ -41,6 +45,7 @@ public class LevelManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         allEnemiesSpawned = false;
+        audioSource = gameObject.GetComponent<AudioSource>();
         if(player == null){
                 //get reference to player
                 player = GameObject.FindWithTag("Player");
@@ -123,10 +128,13 @@ public class LevelManagerScript : MonoBehaviour
         if (health <=0){
         foreach (GameObject enemy in currentEnemies)
         {
-            //stop all enemies
+            //stop all enemy behavior
             enemy.GetComponent<EnemyScript>().enabled = false;   
         }
-        player.GetComponent<PlayerMovement>().gameActive = false;
+        //remove player character
+        Destroy(player); 
+        //play player death sound
+        audioSource.PlayOneShot(playerDeathSound, 1.0f);
         //stop spawning enemies
         StopCoroutine(SpawnEnemies());
         StopCoroutine(SpawnPickups()); 
@@ -149,10 +157,10 @@ public class LevelManagerScript : MonoBehaviour
     }
 
     IEnumerator SpawnEnemies(){
-        //wait for 3 seconds before spawning enemies
+        //wait for 3 seconds at the start of the level before spawning enemies
         yield return new WaitForSeconds(3f);
         int totalNumberOfEnemies = enemies.Count;
-        for (int i = 0; i <= totalNumberOfEnemies; i++) //
+        for (int i = 0; i <= totalNumberOfEnemies; i++)
         {
             //choose a random spawn point
             int randomIndex = Random.Range(0, spawnPoints.Length);
@@ -186,6 +194,9 @@ public class LevelManagerScript : MonoBehaviour
                     if(player.GetComponent<HealthAndDamageScript>().health < 3){
                     Instantiate(healthPickup, spawnPoint, healthPickup.transform.rotation);
                     }
+                    else {
+                        Instantiate(powerPickup, spawnPoint, powerPickup.transform.rotation);
+                    }
                     break;
                 case 1:
                     Instantiate(powerPickup, spawnPoint, powerPickup.transform.rotation);
@@ -193,7 +204,6 @@ public class LevelManagerScript : MonoBehaviour
                 default:
                     break;
             }
-            //wait for between 1 and 2 seconds
             yield return new WaitForSeconds(Random.Range(6f, 10f));
         }
     }
