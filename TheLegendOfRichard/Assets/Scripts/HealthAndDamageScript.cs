@@ -50,6 +50,7 @@ public class HealthAndDamageScript : MonoBehaviour
             
             if(other.gameObject.CompareTag("HealthPickup")){
                 HealthAndDamageScript hdScript = gameObject.GetComponent<HealthAndDamageScript>();
+                playerAudio.PlayOneShot(boostSound);
                 if(hdScript.health < 3){
                     hdScript.Heal();
                     Destroy(other.gameObject); // destroy health pickup when picked up

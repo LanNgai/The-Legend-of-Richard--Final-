@@ -668,6 +668,10 @@ PrefabInstance:
       propertyPath: boostSound
       value: 
       objectReference: {fileID: 8300000, guid: ba9279267a423234bace7bca8da44087, type: 3}
+    - target: {fileID: -1597553085905255073, guid: ebfcfd8baf7a2024e9ad94aa9d49c155, type: 3}
+      propertyPath: boostParticles
+      value: 
+      objectReference: {fileID: 19821056, guid: 079954accd64b32419ec069129c81273, type: 3}
     - target: {fileID: 1910720414895384124, guid: ebfcfd8baf7a2024e9ad94aa9d49c155, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -712,6 +716,10 @@ PrefabInstance:
       propertyPath: powerupIndicator
       value: 
       objectReference: {fileID: 1335748960}
+    - target: {fileID: 3798608285423063369, guid: ebfcfd8baf7a2024e9ad94aa9d49c155, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 6735912495619048326, guid: f8be2e1c117b25d4c8a8c15625a3917a, type: 3}
     - target: {fileID: 4690620593380941564, guid: ebfcfd8baf7a2024e9ad94aa9d49c155, type: 3}
       propertyPath: m_Name
       value: Player
@@ -729,6 +737,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 568743958235264809, guid: 4ea99e727f7d53b4a84ae3dca55dcc08, type: 3}
+      propertyPath: powerPickup
+      value: 
+      objectReference: {fileID: 2920677533291455420, guid: a33aa9e3e67ea7e4ea939cadf84ebdd0, type: 3}
+    - target: {fileID: 568743958235264809, guid: 4ea99e727f7d53b4a84ae3dca55dcc08, type: 3}
+      propertyPath: healthPickup
+      value: 
+      objectReference: {fileID: 8550257263588338532, guid: 7a783bba9360516429662df13a1da14c, type: 3}
     - target: {fileID: 568743958235264809, guid: 4ea99e727f7d53b4a84ae3dca55dcc08, type: 3}
       propertyPath: enemies.Array.size
       value: 12
